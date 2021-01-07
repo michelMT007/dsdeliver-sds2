@@ -1,12 +1,14 @@
-import './style.css'
-import {ReactComponent as Logo} from './logo.svg'
-import React from 'react'
+import './style.css';
+import { ReactComponent as Logo} from './logo.svg';
+import React from 'react';
 function Navbar(){
 
     return(
-        <nav className="main-navbar">
-            <  />
-            <a href="home" className="logo-text">DS Delivery</a>
+        <nav className="main-navbar" >
+            <Logo></Logo>
+            <a href="home" className="logo-text">
+                 DS Delivery
+            </a>
         </nav>
 
     )
