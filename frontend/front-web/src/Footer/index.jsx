@@ -6,7 +6,7 @@ import React from 'react';
 function Footer(){
 
     return(
-        <footer>
+        <footer className="main-footer">
             App desenvolvido duarante a 2 ed. do evento Semana DevSuperior
             <div>
                 <a href="https://www.youtube.com/c/DevSuperior" target="_new">
@@ -27,4 +27,4 @@ function Footer(){
 }
 
 
-export default Navbar
+export default Footer
