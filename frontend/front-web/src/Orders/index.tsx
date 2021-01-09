@@ -3,6 +3,7 @@ import StepsHeader from "./StepsHeader";
 import {useEffect, useState} from 'react';
 import { Product } from "./types";
 import { fetchProducts } from "../api";
+import OrderLocation from "./OrderLocation";
 
 
 function Orders(){
@@ -18,6 +19,7 @@ function Orders(){
         <div className="orders-container">
             <StepsHeader></StepsHeader>
             <ProductsList products={products} />
+            <OrderLocation/>
         </div>
     )
 }

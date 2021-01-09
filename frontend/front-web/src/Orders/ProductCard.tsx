@@ -11,7 +11,7 @@ function formatPrice(price: number){
         style:'currency',
         currency: 'BLR',
         minimumFractionDigits:2
-    } )
+    } )  
     return formatter.format(price);
 }
 
