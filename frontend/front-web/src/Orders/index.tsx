@@ -1,19 +1,25 @@
 import ProductsList from "./ProductsList";
 import StepsHeader from "./StepsHeader";
 import {useEffect, useState} from 'react';
-import { OrderLocationdata, Product } from "./types";
-import { fetchProducts } from "../api";
+import { OrderLocationData, Product } from "./types";
+import { fetchProducts, saveOrder } from "../api";
 import OrderLocation from "./OrderLocation";
 import OrderSummary from "./OrderSummary";
 import Footer from "../Footer";
-import { checkIsSelected } from "./helpers";
+import { checkIsSelected, formatPrice } from "./helpers";
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Orders(){
     const [products, setProducts]=useState<Product[]>([]);
 
     const [selectedProducts, setSelectedProducts]=useState<Product[]>([]);
+
+    const totalPrice = selectedProducts.reduce((sum, item) => {
+        return sum + item.price;
+    }, 0);
     
-    const [orderLocation, setOrderLocation]= useState<OrderLocationdata>();
+    const [orderLocation, setOrderLocation]= useState<OrderLocationData>();
 
     useEffect(()=> {
         fetchProducts()
@@ -32,17 +38,40 @@ function Orders(){
         }
       } 
 
+      const handleSubmit = () => {
+        const productsIds = selectedProducts.map(({ id }) => ({ id }));
+        const payload = {
+          ...orderLocation!,
+          products: productsIds
+        }
+      
+        saveOrder(payload).then(() => {
+          toast.error('Pedido enviado com sucesso!');
+          setSelectedProducts([]);
+        })
+          .catch(() => {
+            toast.warning('Erro ao enviar pedido');
+          })
+      } 
+      
+
     return(
         <>
             <div className="orders-container">
                 <StepsHeader></StepsHeader>
                 <ProductsList 
                     products={products}
-                    onSelectProduct={handleSelectProduct}/>
+                    onSelectProduct={handleSelectProduct}
                     selectedProducts={selectedProducts}
+                />
+                    
                     
                 <OrderLocation onChangeLocation={location => setOrderLocation(location)} />
-                <OrderSummary></OrderSummary>
+                <OrderSummary 
+                    amount={selectedProducts.length}
+                    totalPrice={totalPrice}
+                    onSumit={handleSubmit}
+                />   
             </div>
             <Footer></Footer>
         </>

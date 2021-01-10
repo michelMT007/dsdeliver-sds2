@@ -8,7 +8,7 @@ type Props = {
     onSelectProduct:(product: Product) => void;
     
 }
-function ProductsList({products,selectedProducts, onSelectProduct}: Props){
+function ProductsList({products, selectedProducts, onSelectProduct}: Props){
 
     return(
 
