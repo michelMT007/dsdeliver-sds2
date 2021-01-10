@@ -1,10 +1,5 @@
-//import {ReactComponent as Pizza} from './pizza.svg';
+   
 import {Product} from './types';
-
-type Props = {
-    product: Product;
-} 
-
 function formatPrice(price: number){
 
     const formatter = new Intl.NumberFormat('pt-BR',{
@@ -13,13 +8,23 @@ function formatPrice(price: number){
         minimumFractionDigits:2
     } )  
     return formatter.format(price);
-}
+} 
 
-function ProductCard({product}: Props){
+type Props = {
+    product: Product;
+    onSelectProduct: (product:Product) => void;
+    isSelected: boolean;
+} 
+
+
+
+function ProductCard({product, onSelectProduct, isSelected}: Props){
 
     return(
 
-        <div className="order-card-container">
+        <div className={`order-card-container ${isSelected ? 'selected' : ''}`}
+             onClick={() => onSelectProduct(product)}
+        >
             <h3 className="order-card-title">
             {product.name}
             </h3>
