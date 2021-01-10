@@ -1,13 +1,13 @@
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import AsyncSelect from 'react-select/async';
-import NumberLiteralType from 'typescript';
 
 import { fetchLocalMapBox } from '../api';
 import React, { useState } from 'react';
+import { OrderLocationdata } from './types';
 
 const initialPosition = {
-    lat: -18.9110558,
-    lng: -48.26201
+    lat: -48.6197,
+    lng: -28.4875
 }
 
 type Place = {
@@ -20,7 +20,11 @@ type Place = {
     }
 }
 
-function OrderLocation() {
+type Props = {
+    onChangeLocation: (location: OrderLocationdata) => void;
+}
+
+function OrderLocation({onChangeLocation}: Props) {
     const [address, setAddress] = useState<Place>({
         position: initialPosition
     });
@@ -36,7 +40,7 @@ function OrderLocation() {
                     lat: item.center[1],
                     lng: item.center[0]
                 },
-                place: item.place_name,
+                 
             });
         });
 
@@ -45,11 +49,11 @@ function OrderLocation() {
 
      const handleChangeSelect = (place: Place) => {
         setAddress(place);
-        /*onChangeLocation({
+        onChangeLocation({
             latitude: place.position.lat,
             longitude: place.position.lng,
             address: place.label!
-        });*/
+        });
     }; 
     
     
@@ -70,14 +74,17 @@ function OrderLocation() {
 
                 </div>
 
-                <MapContainer center={address.position} zoom={13} scrollWheelZoom={false}>
+                <MapContainer center={address.position} 
+                zoom={13} scrollWheelZoom={false}
+                key={address.position.lat}
+                >
                     <TileLayer
                         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
                     <Marker position={address.position}>
                         <Popup>
-                            Meu local <br /> Easily customizable.
+                            Meu marcador <br /> 
                         </Popup>
                     </Marker>
                 </MapContainer>
