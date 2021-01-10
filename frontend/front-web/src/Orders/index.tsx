@@ -70,7 +70,7 @@ function Orders(){
                 <OrderSummary 
                     amount={selectedProducts.length}
                     totalPrice={totalPrice}
-                    onSumit={handleSubmit}
+                    onSubmit={handleSubmit}
                 />   
             </div>
             <Footer></Footer>

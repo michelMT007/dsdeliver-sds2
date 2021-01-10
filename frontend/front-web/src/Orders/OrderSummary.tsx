@@ -3,10 +3,10 @@ import { formatPrice } from "./helpers"
 type Props = {
     amount: number;
     totalPrice:number;
-    onSumit: () => void;
+    onSubmit: () => void;
 }
 
-function OrderSummary({amount, totalPrice}: Props){
+function OrderSummary({amount, totalPrice, onSubmit}: Props){
 
     return(
         
