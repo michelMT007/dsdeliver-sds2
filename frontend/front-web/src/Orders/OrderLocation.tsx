@@ -14,7 +14,7 @@ type Place = {
     label?: string;
     value?: string;
 
-    position: {
+    position: {   
         lat: number;
         lng: number;
     }
@@ -40,7 +40,7 @@ function OrderLocation({onChangeLocation}: Props) {
                     lat: item.center[1],
                     lng: item.center[0]
                 },
-                 
+                 place: item.place_name,
             });
         });
 
@@ -49,6 +49,7 @@ function OrderLocation({onChangeLocation}: Props) {
 
      const handleChangeSelect = (place: Place) => {
         setAddress(place);
+        
         onChangeLocation({
             latitude: place.position.lat,
             longitude: place.position.lng,
@@ -70,13 +71,16 @@ function OrderLocation({onChangeLocation}: Props) {
                         placeholder="Digite um endereço para entrega"
                         className="filter"
                         loadOptions={loadOptions}
-                        onChange={value => handleChangeSelect(value as Place)}></AsyncSelect>
+                        onChange={value => handleChangeSelect(value as Place)}
+                    />
+
 
                 </div>
 
-                <MapContainer center={address.position} 
-                zoom={13} scrollWheelZoom={false}
-                key={address.position.lat}
+                <MapContainer 
+                    center={address.position} 
+                    zoom={15} scrollWheelZoom
+                    key={address.position.lat} 
                 >
                     <TileLayer
                         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
