@@ -1,0 +1,25 @@
+
+
+.main-footer {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: var(--dark-color);
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+    color: #FFF;
+  }
+  
+  .footer-icons {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    padding-left: 25px;
+  }
+  
+  .footer-icons > * {
+    margin-right: 5px;
+    padding-left: 45px;
+  }
+  
