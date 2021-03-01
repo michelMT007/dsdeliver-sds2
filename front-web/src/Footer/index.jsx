@@ -7,7 +7,7 @@ function Footer(){
 
     return(
         <footer className="main-footer">
-            App desenvolvido duarante a 2 ed. do evento Semana DevSuperior
+            Desenvolvido por Michel Dev
             <div>
                 <a href="https://www.youtube.com" target="_new">
                     <YouTubeIcon></YouTubeIcon>
