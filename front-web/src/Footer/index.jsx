@@ -1,7 +1,8 @@
 import './style.css';
-import { ReactComponent as YouTubeIcon} from './youtube.svg';
+
 import { ReactComponent as LinknIcon} from './linkedin.svg';
 import { ReactComponent as InstagramIcon} from './instagram.svg';
+import {ReactComponent as GithubIcon} from './githuborange.svg';
 import React from 'react';
 function Footer(){
 
@@ -9,8 +10,9 @@ function Footer(){
         <footer className="main-footer">
             Desenvolvido por Michel Dev
             <div>
-                <a href="https://www.youtube.com" target="_new">
-                    <YouTubeIcon></YouTubeIcon>
+                <a href="https://github.com/michelMT007" target="_new">
+                <GithubIcon></GithubIcon>  
+                    
                 </a>
 
                 <a href="https://www.linkedin.com/" target="_new">
